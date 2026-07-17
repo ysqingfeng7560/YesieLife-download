@@ -1,0 +1,214 @@
+:root{
+  --bg:#f6fbff;
+  --card:#ffffff;
+  --accent:#cfe9ff;
+  --primary:#2b87ff;
+  --muted:#7a8aa3;
+  --radius:12px;
+  --card-shadow: 0 8px 24px rgba(43,135,255,0.06);
+  font-family: "Helvetica Neue", PingFang SC, "Microsoft YaHei", Arial;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%; margin:0;}
+body{
+  background: linear-gradient(180deg,var(--bg), #ffffff);
+  display:flex; justify-content:center; align-items:flex-start;
+  padding:28px;
+  -webkit-font-smoothing:antialiased;
+}
+
+.page{
+  width:100%; 
+  max-width:920px;
+  display: block;
+}
+
+/* 修复导航栏与页面布局问题 */
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+/*顶部功能栏*/
+.home-link {
+  position: absolute;
+  top: 22px;
+  left: 32px;
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.home-link:hover {
+  color: #145ddc;
+}
+
+
+/* 导航栏样式 */
+.navbar {
+  position: fixed;
+  top: 12px;
+  left: 1%;
+  width: 98%;
+  height: 60px;
+  background: #f8fbff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border:1px solid rgba(43,135,255,0.06);
+  z-index: 1000;
+  /* 蓝色细边框 */
+  border: 1px solid #145ddc75;
+  outline-style: solid;
+  outline-color: #2b87ff;
+  outline-width: medium;
+
+}
+
+/* 导航栏内的链接样式 */
+.navbar a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+  margin: 0 18px;
+  font-size: 15px;
+  transition: color 0.25s ease;
+
+}
+
+.navbar a:hover {
+  color: #145ddc;
+}
+
+/* 右侧“登录” */
+.navbar-right {
+  margin-left: auto;
+}
+
+/* 内容区整体往下移，避免被导航栏遮住 */
+.page {
+  padding-top: 1080px;
+}
+
+/* 修复导航栏与正文并排问题 */
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+}
+
+.page {
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 40px; /* 导航栏下留白 */
+}
+
+/* 搜索框和软件box 统一风格 */
+.search-box, .card{
+  width:100%;
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:12px 14px;
+  box-shadow:var(--card-shadow);
+  border:1px solid rgba(43,135,255,0.06);
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+/* 搜索框特化 */
+.search-box{
+  margin-bottom:12px;
+  justify-content:space-between;
+}
+.search-input{
+  flex:1;
+  border:0;
+  outline:none;
+  font-size:15px;
+  padding:8px 10px;
+}
+.search-btn{
+  border:0;
+  background:linear-gradient(180deg,var(--primary), #1e6fe6);
+  color:#fff;
+  padding:10px 18px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:600;
+  box-shadow:0 8px 20px rgba(43,135,255,0.12);
+}
+
+/* 列表容器 */
+.list{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+/* 单项卡片 */
+.card{
+  justify-content:space-between;
+  overflow:hidden;            /* 用于折叠动画 */
+  will-change: transform, opacity, max-height;
+  transition: transform 380ms cubic-bezier(.2,.9,.3,1), opacity 300ms ease, max-height 350ms ease, margin 350ms ease;
+}
+
+/* 左侧：图标+信息 */
+.left{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width:0;
+}
+.icon{
+  width:56px;
+  height:56px;
+  border-radius:10px;
+  background:linear-gradient(135deg,var(--accent), rgba(207,233,255,0.6));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 6px 18px rgba(43,135,255,0.08);
+  flex-shrink:0;
+}
+.icon img{width:36px;height:36px;display:block}
+
+/* 名称和描述 */
+.meta{display:flex;flex-direction:column;min-width:0}
+.name{font-size:15px;color:#10283b;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.desc{font-size:12px;color:var(--muted);margin-top:6px}
+
+/* 右侧：大小 + 下载按钮 */
+.right{display:flex;align-items:center;gap:12px}
+.small-muted{font-size:12px;color:var(--muted);text-align:right}
+.btn{
+  text-decoration: none;   /* 去掉下划线 */
+  appearance:none;border:0;background:linear-gradient(180deg,var(--primary), #1e6fe6);
+  color:white;padding:10px 22px;border-radius:10px;font-weight:600;cursor:pointer;
+  box-shadow:0 8px 20px rgba(43,135,255,0.12);
+}
+.btn:active{transform:scale(.98)}
+
+/* 隐藏状态（用于 JS 控制） - 我们不会依赖 display:none 直接测量 */
+.hidden{
+  opacity:0;
+  max-height:0 !important;
+  margin-top:0;
+  margin-bottom:0;
+  padding-top:0;
+  padding-bottom:0;
+  pointer-events:none;
+}
+
+/* 无结果提示与页脚 */
+.no-result{margin-top:18px;color:#888;text-align:center;display:none}
+.footer{margin-top:26px;text-align:center;color:var(--muted);font-size:13px}
